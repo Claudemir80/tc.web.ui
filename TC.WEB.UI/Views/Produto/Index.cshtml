@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TC.WEB.UI.Models.Produto>
+
+@{
+    ViewData["Title"] = "Listas";
+}
+
+<h5>Lista de Produtos</h5>
+
+<p>
+    <a asp-action="Cadastro">Novo Produto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estoque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estoque)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCadastro)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-marker fa-lg"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"  class="text-danger ml-1"><i class="fa fa-trash-alt fa lg"></i></a>
+                     <a asp-action="Details" asp-route-id="@item.Id"><i class="fa-thin fa-info fa-lg"></i></a>
+                </td>
+                @*       <td>
+            @Html.ActionLink("Alterar", "Edit", new { id=item.Id  }) |
+            @Html.ActionLink("Detalhar", "Details", new { id=item.Id  }) |
+            @Html.ActionLink("Apagar", "Delete", new { id=item.Id })
+            </td>*@
+            </tr>
+        }
+
+
+    </tbody>
+
+
+</table>

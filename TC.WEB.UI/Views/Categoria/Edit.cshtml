@@ -1,0 +1,42 @@
+﻿@model TC.WEB.UI.Models.Categoria
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h5>AlterarCategoria</h5>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group col-1">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group col-11">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Alterar" class="btn btn-primary" onclick="return confirm('Deseja realmente Alterar?')"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar a Lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

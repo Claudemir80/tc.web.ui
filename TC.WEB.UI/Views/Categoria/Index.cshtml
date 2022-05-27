@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TC.WEB.UI.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h5>Lista de Categorias</h5>
+
+<p>
+    <a asp-action="Create">Nova Categoria</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-marker fa-lg"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger ml-1"><i class="fa fa-trash-alt fa lg"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.Id"><i class="fa-thin fa-info fa-lg"></i></a>
+                </td>
+                @*    <td>
+            @Html.ActionLink("Alterar", "Edit", new { id=item.Id  }) |
+            @Html.ActionLink("Detalhar", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Apagar", "Delete", new { id=item.Id  })
+            </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

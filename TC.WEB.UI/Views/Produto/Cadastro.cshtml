@@ -1,0 +1,76 @@
+﻿@model TC.WEB.UI.Models.Produto
+
+@{
+    ViewData["Title"] = "Cadastro";
+
+    var dataatual = ViewData["datas"];
+}
+
+<h5>Cadastro de Produtos</h5>
+<p>Novo Item de Cadastros</p>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Cadastro">
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group col-1">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" value="0" readonly="readonly" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group col-11">
+                    <label asp-for="Categorias" class="control-label">Categoria</label>
+                    <select id="idseleccategoria" name="products" class="form-control" asp-items="@ViewBag.cities"></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="Preco" class="control-label"></label>
+                    <input asp-for="Preco" class="form-control" style="text-align:right" placeholder="0,00" />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Estoque" class="control-label"></label>
+                    <input asp-for="Estoque" class="form-control" style="text-align:right" placeholder="0,00" />
+                    <span asp-validation-for="Estoque" class="text-danger"></span>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="DataCadastro" class="control-label"></label>
+                    <input asp-for="DataCadastro" class="form-control" value="@ViewBag.datas" readonly="readonly" />
+                    <span asp-validation-for="DataCadastro" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Cadastro" class="btn btn-primary" onclick="getIdCategoria()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volta a Lista</a>
+</div>
+
+<script>
+    function getIdCategoria() {
+        var id = $('#idseleccategoria option:selected').val();
+    }
+</script>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
